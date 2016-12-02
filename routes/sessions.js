@@ -28,8 +28,8 @@ router.post('/', (req, res, next) => {
                         })
                     },
                     json: () => {
-                        res.status(403);
-                        res.end();
+                        res.status(401)
+                        res.end()
                     }
                 })
             }
@@ -51,6 +51,19 @@ router.post('/', (req, res, next) => {
                 }).catch( (err) => {
                   return err;
                 })
+              })
+            }
+            else {
+              res.format({
+                html: () => {
+                    res.render('sessions/authentification', {
+                        loginFailed: true
+                    })
+                },
+                json: () => {
+                  res.status(401)
+                  res.end()
+                }
               })
             }
 
