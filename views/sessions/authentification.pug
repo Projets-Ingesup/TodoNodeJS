@@ -1,7 +1,7 @@
 extends ../login-layout
 
 block content
-  
+
 
     div#login
         div#login-title Bonjour toi !
@@ -11,8 +11,8 @@ block content
 
         div#login-form
             form(action='/sessions' method='post')
-                input(type='pseudo' name='pseudo' placeholder="pseudo")
+                input(type='pseudo' name='pseudo' placeholder="pseudo" required)
                 br
-                input(type='password' name='password' placeholder="mot de passe")
+                input(type='password' name='password' placeholder="mot de passe" required)
                 br
                 input#button(type='submit' value='Connexion')
