@@ -8,16 +8,16 @@ block content
         tr
           th Pseudo
           td
-          input(name='pseudo' value=user.pseudo placeholder="Pseudo")
+          input(type ="text" name='pseudo' value=user.pseudo placeholder="Pseudo" required)
         tr
           th Prénom
           td
-          input(name='firstname' value=user.firstname placeholder="Prénom")
+          input(type ="text" name='firstname' value=user.firstname placeholder="Prénom" required)
         tr
           th Email
           td
-          input(name='email' value=user.email placeholder="Email")
+          input(type ="email" name='email' value=user.email placeholder="Email" required)
 
-        input(type='password' name='password' value=user.password hidden)
+        input(type='password' name='password' value=user.password hidden required)
 
         input(type='submit', value='Envoyer')
