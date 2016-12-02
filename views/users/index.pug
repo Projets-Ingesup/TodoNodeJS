@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  h1 Liste des utilisateurs
+
+  table#usersTable
+    tr
+      th ID
+      th Pseudo
+      th Prénom
+      th Email
+      th Actions
+
+
+    each user in users
+      tr
+        td= user.rowid
+        td= user.pseudo
+        td= user.firstname
+        td= user.email
+        td
+          ul
+            li
+              a(href="/users/" + user.rowid) Voir
+            li
+              a(href="/users/" + user.rowid + '/edit') Éditer
+            if user.rowid != currentUser.rowid
+              li
+                a(href="/users/" + user.rowid + '?_method=delete') Supprimer

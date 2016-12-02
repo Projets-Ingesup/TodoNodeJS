@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+    h1 Edition de #{user.pseudo}
+
+    form(action=action method='post')#edit-table
+        table
+        tr
+          th Pseudo
+          td
+          input(name='pseudo' value=user.pseudo placeholder="Pseudo")
+        tr
+          th Prénom
+          td
+          input(name='firstname' value=user.firstname placeholder="Prénom")
+        tr
+          th Email
+          td
+          input(name='email' value=user.email placeholder="Email")
+
+        input(type='password' name='password' value=user.password hidden)
+
+        input(type='submit', value='Envoyer')

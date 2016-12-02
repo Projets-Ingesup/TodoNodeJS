@@ -1,0 +1,213 @@
+@import "./settings";
+
+body {
+  background-image: url("../img/background.jpg");
+  font: $font-primary;
+  color: $color-secondary;
+}
+
+#menu {
+	width: 100%;
+  position: absolute;
+}
+
+#menu a,  #menu a:visited {
+	border-left: 5px solid black;
+	margin: 0.5em auto;
+	padding: 1em;
+	text-decoration: none;
+	color: black;
+	background-color: white;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	float: right;
+}
+
+#menu A:hover {
+	border-left: 5px solid limegreen;
+}
+
+.logout {
+  background: lightskyblue !important;
+}
+
+.logout a {
+  border-left: 5px solid black;
+	margin: 0.5em auto;
+	padding: 1em;
+	text-decoration: none;
+	color: black;
+	background-color:lightsteelblue;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	float: right;
+}
+
+.logout a:hover {
+	border-left: 5px solid darkblue;
+}
+
+.logout #button {
+  border: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.logout #button:hover {
+  cursor: pointer;
+}
+
+#login {
+  width: 40%;
+  height: 250px;
+  margin-top: 18%;
+  margin-left: 30%;
+}
+
+#login-title {
+  height: 50px;
+  text-align: center;
+  color: #FFF;
+  padding: 6px;
+  text-transform: uppercase;
+  color: black;
+	font-weight: bold;
+}
+
+#login-form input {
+	width: 200px;
+	height: 35px;
+	margin-top: 20px;
+	font-size: 15px;
+  background: none;
+  border: 1px solid #FFF;
+  background-color: #FFF;
+  color: #000;
+  text-align: center;
+}
+
+#login-form input:focus {
+    background-color: #ebeef4;
+    font-weight: bold;
+}
+
+#login-form {
+  text-align: center;
+}
+
+#button {
+  font-weight: bold;
+}
+
+#usersTable {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 8%;
+}
+
+#usersTable th {
+  background: #000;
+  color: #FFF;
+  height: 50px;
+}
+
+#usersTable td {
+  background: #D8E3E5;
+  color: #000;
+  text-align: center;
+}
+
+#edit-table {
+  text-align: center;
+  position: relative;
+  top: 200px;
+  width: 200px;
+  left: 800px;
+}
+
+#edit-table input {
+	width: 200px;
+	height: 35px;
+	margin-top: 20px;
+	font-size: 15px;
+  background: none;
+  border: 1px solid #FFF;
+  background-color: #FFF;
+  color: #000;
+  text-align: center;
+}
+
+#edit-table input:focus {
+    background-color: #ebeef4;
+    font-weight: bold;
+}
+
+.todo {
+  position: relative;
+  top: 180px;
+  left: 600px;
+  width: 500px;
+  margin: 10px;
+  border-radius: 5px;
+  background: #FFF;
+  display: block;
+  color: #000;
+  float: left;
+  text-align: center;
+  box-shadow: 0 1px #DDD,
+              0 2px #EEE,
+              0 3px #DDD,
+              0 4px #EEE,
+              0 5px #DDD,
+              0 6px #EEE,
+              0 10px 10px -3px #AAA;
+}
+
+.todo h1 {
+  cursor: default;
+  height: 75px;
+  background: limegreen;
+  display: block;
+  font-size: 200%;
+  font-weight: bold;
+  line-height: 75px;
+}
+
+.todo ol {
+  list-style-type:none;
+  padding: 0px;
+}
+
+.todo ol li {
+  padding: 20px 40px 20px 40px;
+  background: transparent;
+}
+
+.todo ol li:hover {
+  background-color: #EEE;
+}
+
+#todo-list {
+  width: 100%;
+  text-align: left;
+}
+
+.todo-actions {
+  float: right;
+  position: relative;
+  bottom: 20px;
+  background: #FFF;
+  border: 0;
+}
+
+.todo-actions:hover {
+  cursor: pointer;
+}
+
+#todo-list #login-form input {
+  width: 100%;
+  border: 1px solid #ccc;
+  padding-left: -10px;
+}

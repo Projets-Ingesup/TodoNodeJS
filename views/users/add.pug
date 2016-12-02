@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+    h1 Ajouter un utilisateur
+
+    form(action=action method='post')#edit-table
+        table
+        tr
+            th Pseudo
+            td
+            input(name='pseudo' placeholder="Pseudo")
+        tr
+            th Password
+            td
+            input(name='password' type='password' placeholder="Password")
+
+        tr
+            th Prénom
+            td
+            input(name='firstname' placeholder="Prénom")
+        tr
+            th Email
+            td
+            input(name='email' placeholder="Email")
+
+        input(type='submit', value='Envoyer')

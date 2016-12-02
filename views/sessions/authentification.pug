@@ -1,0 +1,18 @@
+extends ../login-layout
+
+block content
+  
+
+    div#login
+        div#login-title Bonjour toi !
+
+        if loginFailed
+          p(style='color:red') Mauvais identifiants !
+
+        div#login-form
+            form(action='/sessions' method='post')
+                input(type='pseudo' name='pseudo' placeholder="pseudo")
+                br
+                input(type='password' name='password' placeholder="mot de passe")
+                br
+                input#button(type='submit' value='Connexion')

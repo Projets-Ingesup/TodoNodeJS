@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+    h1 Détails de #{user.pseudo}
+
+    form(action=action method='post')#edit-table
+        table
+        tr
+          th Pseudo
+          td
+          input(name='pseudo' value=user.pseudo disabled placeholder="Pseudo")
+        tr
+          th Prénom
+          td
+          input(name='firstname' value=user.firstname disabled placeholder="Prénom")
+        tr
+          th Email
+          td
+          input(name='email' value=user.email disabled placeholder="Email")

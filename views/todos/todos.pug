@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  h1 Vos todos
+
+  section.todo
+    h1 Personnel
+
+    div#todo-list
+      ol
+        each todo in listTodos
+          li= todo.task
+            form(action="/todos/"+todo.todoId+"?_method=delete", method="POST")
+              button(type="submit").todo-actions X
+
+        li#login-form
+          form(action="/todos", method="POST")
+            input(type='text' name='task' placeholder="Une todo à ajouter ?" required)
+            input(type='text' name='taskAssignedTo' placeholder="A qui assigner la todo ?" required)
+            button(type='submit') Ajouter
+        if creationTaskFailed
+          div(style='color:red') Veuillez remplir tous les champs !

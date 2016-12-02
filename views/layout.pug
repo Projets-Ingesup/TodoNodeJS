@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/css/style.css')
+
+  body
+    #menu
+      a.logout
+        form(action="/sessions?_method=delete", method="POST")
+          button.logout#button Se déconnecter
+      a(href="/users") Liste des utilisateurs
+      a(href="/users/add") + Ajouter un utilisateur
+      a(href="/todos") To do list  ♥
+
+    block content
