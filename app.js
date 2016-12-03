@@ -18,6 +18,7 @@ mongoose.Promise = global.Promise;
 const PORT = process.PORT || 8080
 const app = express()
 
+app.locals.moment = require('moment');
 // Middleware pour les cookies
 app.use(cookieParser())
 
@@ -118,7 +119,7 @@ app.use(function(err, req, res, next) {
 
 db.open('bdd.db').then(() => {
     console.log('> BDD opened')
-    return db.run('CREATE TABLE IF NOT EXISTS users (pseudo, password, email, firstname, createdAt, updatedAt, teamName, teamId)')
+    return db.run('CREATE TABLE IF NOT EXISTS users (pseudo unique, password, email, firstname, createdAt, updatedAt, teamName, teamId)')
 }).then(() => {
     mongoose.connect('mongodb://localhost/deschamps-lannelucq', function(err) {
         if (err) {
