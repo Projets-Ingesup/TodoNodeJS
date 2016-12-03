@@ -7,11 +7,21 @@ block content
 
     div#todo-list
       ol
-        each todo in listTodos
-          li= todo.task
-            span de #{todo.assignedBy} le #{moment(todo.createdAt).format('MM.DD.YYYY')}
+        each todo in listTodosNotCompleted
+          li
+            span= todo.task
+            span.assignedBy de #{todo.assignedBy} le #{moment(todo.createdAt).format('MM.DD.YYYY')}
             form(action="/todos/"+todo.todoId+"?_method=delete", method="POST")
-              button(type="submit").todo-actions X
+              button(type="submit").todo-actions.todo-delete
+            form(action="/todos/"+todo.todoId+"?_method=put", method="POST")
+              button(type="submit").todo-actions.todo-done 
+
+        each todoComplete in listTodosCompleted
+          li
+            span(style="text-decoration: line-through")= todoComplete.task
+            span.assignedBy de #{todoComplete.assignedBy} le #{moment(todoComplete.createdAt).format('MM.DD.YYYY')}
+            form(action="/todos/"+todoComplete.todoId+"?_method=delete", method="POST")
+              button(type="submit").todo-actions.todo-delete
 
         li#login-form
           form(action="/todos", method="POST")

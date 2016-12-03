@@ -194,7 +194,7 @@ body {
   text-align: left;
 }
 
-#todo-list ol li span {
+#todo-list ol li span.assignedBy {
   color: grey;
   font-size: 0.75em;
   margin-left: 5px;
@@ -210,6 +210,19 @@ body {
 
 .todo-actions:hover {
   cursor: pointer;
+}
+
+.todo-delete {
+  background: url("../img/bin.png");
+  width: 25px;
+  height: 25px;
+  margin-left: 5px;
+}
+
+.todo-done {
+  background: url("../img/check.png");
+  width: 25px;
+  height: 25px;
 }
 
 #todo-list #login-form input {

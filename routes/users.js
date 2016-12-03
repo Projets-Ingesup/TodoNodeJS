@@ -117,19 +117,38 @@ router.post('/', (req, res, next) => {
         return next(err)
     }
 
-    // Ajout de l'utilisateur dans la base de donnée
-    User.insert(req.body).then(() => {
+    User.getUserByPseudo(req.body.pseudo).then( (user) => {
+      // Si il n'y a pas d'utilisateur avec le même pseudo en base de donnée,
+      // on sauvegarde le nouvel utilisateur
+      if (user == "" || !user) {
+        User.insert(req.body).then(() => {
+            res.format({
+                html: () => {
+                    res.redirect('/users')
+                },
+                json: () => {
+                    res.status(201).send({
+                        message: 'success'
+                    })
+                }
+            })
+        }).catch(next)
+      } else {
+        // Si il y a déjà un utilisateur avec ce pseudo, on redirige vers le formulaire
+        // d'ajout de nouvel utilisateur
         res.format({
-            html: () => {
-                res.redirect('/users')
-            },
-            json: () => {
-                res.status(201).send({
-                    message: 'success'
-                })
-            }
+          html: () => {
+            res.redirect('/users/add')
+          },
+          json: () => {
+            res.status(409).send({
+              message: 'User cannot be saved, another user has already this pseudo.'
+            })
+          }
         })
-    }).catch(next)
+
+      }
+    })
 })
 
 // Suppression d'un utilisateur selon l'id passé en paramètre

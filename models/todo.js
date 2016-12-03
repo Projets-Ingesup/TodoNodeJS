@@ -11,7 +11,8 @@ var todoSchema = new mongoose.Schema({
   teamId: Number,
   assignedBy: String,
   assignedUser: String,
-  done: Boolean
+  done: Boolean,
+  completedAt: Date
 })
 
 var todoModel = mongoose.model('todo', todoSchema)
@@ -26,12 +27,26 @@ module.exports = {
       task: task,
       assignedBy: assignedBy,
       assignedUser: assignedUser,
+      done: false,
+      completedAt: null
     })
     return todo.save()
   },
 
   findByUserId: (userId) => {
     return todoModel.find({userId: userId}).exec()
+  },
+
+  findNotCompletedTodosByUserId: (userId) => {
+    return todoModel.find({userId: userId, done: false}).exec()
+  },
+
+  findCompletedTodosByUserId: (userId) => {
+    return todoModel.find({userId: userId, done: true}).exec()
+  },
+
+  completeTodo: (todoId) => {
+    return todoModel.update({todoId: todoId}, {$set: {done: true, completedAt: Date.now() }}, {upsert: true})
   },
 
   delete: (todoId) => {

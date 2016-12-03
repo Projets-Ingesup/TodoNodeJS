@@ -8,11 +8,18 @@ const Todo = require('../models/todo')
 router.get('/', (req, res, next) => {
     var token = Session.getToken(req);
     User.getUserIdFromToken(token).then((userId) => {
-        Todo.findByUserId(userId).then((listTodos) => {
+        Todo.findNotCompletedTodosByUserId(userId).then( (listTodosNotCompleted) => {
+          Todo.findCompletedTodosByUserId(userId).then( (listTodosCompleted) => {
+            console.log('Todo not yet completed')
+            console.log(listTodosNotCompleted)
+
+            console.log('Todo completed')
+            console.log(listTodosCompleted)
             res.format({
                 html: () => {
                     res.render('todos/todos', {
-                        listTodos: listTodos
+                        listTodosNotCompleted: listTodosNotCompleted,
+                        listTodosCompleted: listTodosCompleted
                     })
                 },
                 json: () => {
@@ -21,6 +28,7 @@ router.get('/', (req, res, next) => {
                     })
                 }
             })
+          })
         })
     })
 })
@@ -49,6 +57,16 @@ router.post('/', (req, res, next) => {
         // Si les deux champs sont renseignés, on assigne le todo à l'utilisateur passé
         // en paramètre. Seul lui pourra voir le todo
         User.getUserByPseudo(taskAssignedTo).then((user) => {
+            if(user == "" || !user ) {
+              res.format({
+                html: () => {
+                  res.redirect('/todos')
+                },
+                json: () => {
+                  res.send({message: "Erreur,l'utilisateur renseigné n'existe pas." })
+                }
+              })
+            }
             Todo.create(user.rowid, user.pseudo, task, currentUser.pseudo, taskAssignedTo).then(() => {
                 res.redirect('/todos')
             })
@@ -56,6 +74,20 @@ router.post('/', (req, res, next) => {
       })
     })
 
+})
+
+// Modifie un todo existant pour le valider
+router.put('/:todo', (req, res, next) => {
+  Todo.completeTodo(req.params.todo).then( () => {
+    res.format({
+      html: () => {
+        res.redirect('/todos');
+      },
+      json: () => {
+        res.send({message: "Todo completed"});
+      }
+    })
+  })
 })
 
 // Suppression d'un todo puis redirection vers la page todo de l'utilisateur connecté
