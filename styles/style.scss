@@ -194,6 +194,12 @@ body {
   text-align: left;
 }
 
+#todo-list ol li span {
+  color: grey;
+  font-size: 0.75em;
+  margin-left: 5px;
+}
+
 .todo-actions {
   float: right;
   position: relative;

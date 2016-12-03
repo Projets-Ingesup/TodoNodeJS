@@ -9,6 +9,7 @@ block content
       ol
         each todo in listTodos
           li= todo.task
+            span par #{todo.assignedBy}
             form(action="/todos/"+todo.todoId+"?_method=delete", method="POST")
               button(type="submit").todo-actions X
 
