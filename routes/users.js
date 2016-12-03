@@ -43,9 +43,12 @@ router.get('/', (req, res, next) => {
     }).catch(next)
 })
 
+// On affiche les informations d'un utilisateur qui pourront être modifiées
 router.get('/:userId(\\d+)/edit', (req, res, next) => {
     res.format({
         html: () => {
+          // On récupère les informations de l'utilisateurs dont l'id est passé
+          // en paramètre
             User.getUserById(req.params.userId).then((user) => {
                 if (!user) return next()
 
@@ -63,6 +66,7 @@ router.get('/:userId(\\d+)/edit', (req, res, next) => {
     })
 })
 
+// On affiche le formulaire pour ajouter un nouvel utilisateur
 router.get('/add', (req, res, next) => {
     res.format({
         html: () => {
@@ -78,6 +82,8 @@ router.get('/add', (req, res, next) => {
     })
 })
 
+// On affiche les informations de l'utilisateur dont on a passé l'id
+// en paramètre
 router.get('/:userId(\\d+)', (req, res, next) => {
     User.getUserById(req.params.userId).then((user) => {
         if (!user) return next()
@@ -97,16 +103,21 @@ router.get('/:userId(\\d+)', (req, res, next) => {
     }).catch(next)
 })
 
+// Ajout d'un utilisateur en base
 router.post('/', (req, res, next) => {
+    // On vérifie qu'aucun des input n'est pas renseigné ou a une valeur null
     if (!req.body.pseudo || req.body.pseudo === '' ||
         !req.body.email || req.body.email === '' ||
+        !req.body.password || req.body.password === '' ||
         !req.body.firstname || req.body.firstname === ''
     ) {
+        // Gestion des erreurs si un paramètre n'est pas renseigné
         let err = new Error('Bad Request')
         err.status = 400
         return next(err)
     }
 
+    // Ajout de l'utilisateur dans la base de donnée
     User.insert(req.body).then(() => {
         res.format({
             html: () => {
@@ -121,6 +132,7 @@ router.post('/', (req, res, next) => {
     }).catch(next)
 })
 
+// Suppression d'un utilisateur selon l'id passé en paramètre
 router.delete('/:userId(\\d+)', (req, res, next) => {
     User.removeUserById(req.params.userId).then(() => {
         res.format({
