@@ -1,0 +1,15 @@
+version: '3'
+services:
+  db-mongo:
+    image: mvertes/alpine-mongo:latest
+  backend:
+    build: .
+    volumes:
+      - .:/app
+      - dependencies:/app/node_modules
+    ports:
+      - "8080:8884"
+    links:
+      - db-mongo
+volumes:
+  dependencies:
